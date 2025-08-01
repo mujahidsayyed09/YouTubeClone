@@ -9,8 +9,8 @@ Live Link---https://youtubeclonems.netlify.app/
 ### **1️⃣ Clone the Repository**
 
 ```bash
-git clone <your-repo-url>
-cd youtube-clone
+git clone (https://github.com/mujahidsayyed09/YouTubeClone)
+cd YouTubeClone
 ```
 
 ### **2️⃣ Backend Setup**
