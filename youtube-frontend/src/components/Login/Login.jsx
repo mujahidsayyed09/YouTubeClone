@@ -23,7 +23,11 @@ function Login({ setLoginModel }) {
     // Handle login request
     const handleLogin = async () => {
         setLoader(true);
-        axios.post("http://localhost:5000/auth/login", loginField, { withCredentials: true })
+        axios.post(
+            `${import.meta.env.VITE_API_BASE_URL || "https://youtubeclone-gnz1.onrender.com"}/auth/login`,
+            loginField,
+            { withCredentials: true }
+        )
             .then((res) => {
                 setLoader(false);
                 localStorage.setItem("token", res.data.token);
@@ -38,10 +42,11 @@ function Login({ setLoginModel }) {
             });
     };
 
+
     return (
         <div className="login">
             <div className="loginCard">
-                
+
                 {/* Title */}
                 <div className="loginCard-title">
                     <YouTubeIcon sx={{ fontSize: "54px" }} className="loginCard-titleImg" />
@@ -50,17 +55,17 @@ function Login({ setLoginModel }) {
 
                 {/* Input Fields */}
                 <div className="loginCredentials">
-                    <input 
-                        value={loginField.userName} 
-                        placeholder="Enter Username" 
-                        onChange={(e) => handleOnChangeInput(e, "userName")} 
-                        type="text" 
+                    <input
+                        value={loginField.userName}
+                        placeholder="Enter Username"
+                        onChange={(e) => handleOnChangeInput(e, "userName")}
+                        type="text"
                     />
-                    <input 
-                        value={loginField.password} 
-                        placeholder="Enter Password" 
-                        onChange={(e) => handleOnChangeInput(e, "password")} 
-                        type="password" 
+                    <input
+                        value={loginField.password}
+                        placeholder="Enter Password"
+                        onChange={(e) => handleOnChangeInput(e, "password")}
+                        type="password"
                     />
                 </div>
 

@@ -9,6 +9,7 @@ import GetAppIcon from '@mui/icons-material/GetApp';
 
 // React Router
 import { Link, useParams } from "react-router-dom";
+const API_BASE = import.meta.env.VITE_API_BASE_URL || "https://youtubeclone-gnz1.onrender.com";
 
 // Notifications
 import { toast, ToastContainer } from "react-toastify";
@@ -31,7 +32,7 @@ function Video() {
      * ============================= */
     const fetchVideoById = async () => {
         try {
-            const res = await axios.get(`http://localhost:5000/api/getVideoById/${id}`);
+            const res = await axios.get(`${API_BASE}/api/getVideoById/${id}`);
             setData(res.data.video);
             setVideoUrl(res.data.video?.videoLink);
         } catch (error) {
@@ -44,7 +45,7 @@ function Video() {
      * ============================= */
     const getCommentByVideoId = async () => {
         try {
-            const res = await axios.get(`http://localhost:5000/commentApi/comment/${id}`);
+            const res = await axios.get(`${API_BASE}/commentApi/comment/${id}`);
             setComments(res.data.comments);
         } catch (error) {
             console.error("Error fetching comments:", error);
@@ -57,10 +58,10 @@ function Video() {
     const handleComment = async () => {
         const body = { message, video: id };
         try {
-            const res = await axios.post("http://localhost:5000/commentApi/comment", body, { withCredentials: true });
+            const res = await axios.post(`${API_BASE}/commentApi/comment`, body, { withCredentials: true });
             const newComment = res.data.comment;
-            setComments([newComment, ...comments]); // Add new comment to top
-            setMessage(""); // Reset input
+            setComments([newComment, ...comments]);
+            setMessage("");
         } catch (err) {
             toast.error("Please Login");
         }
@@ -76,7 +77,7 @@ function Video() {
         <div className="video">
             {/* ===== Left Section: Video Player & Details ===== */}
             <div className="videoPostSection">
-                
+
                 {/* Video Player */}
                 <div className="video_youtube">
                     {data ? (
@@ -96,7 +97,7 @@ function Video() {
 
                     {/* Channel Info & Actions */}
                     <div className="youtube_video_ProfileBlock">
-                        
+
                         {/* Left: Profile */}
                         <div className="youtube_video_ProfileBlock_left">
                             <Link to={`/user/${data?.user?._id}`} className="youtube_video_ProfileBlock_left_img">

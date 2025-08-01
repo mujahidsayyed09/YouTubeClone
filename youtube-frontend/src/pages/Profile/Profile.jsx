@@ -11,7 +11,8 @@ function Profile({ sideNavbar }) {
     const [user, setUser] = useState(null);
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/api/${id}/channel`)
+        axios
+            .get(`${import.meta.env.VITE_API_BASE_URL || "https://youtubeclone-gnz1.onrender.com"}/api/${id}/channel`)
             .then((response) => {
                 setData(response.data.video);
                 setUser(response.data.video[0]?.user);
@@ -19,11 +20,12 @@ function Profile({ sideNavbar }) {
             .catch((err) => console.error(err));
     }, [id]);
 
+
     return (
         <div className="profile">
             <SideNavbar sideNavbar={sideNavbar} />
             <div className={sideNavbar ? "profile_page" : "fullProfile_page"}>
-                
+
                 {user && (
                     <div className="profile_top_section">
                         <div className="profile_top_section_profile">
@@ -45,9 +47,9 @@ function Profile({ sideNavbar }) {
                     </div>
                     <div className="profileMainVideo">
                         {data.map((item) => (
-                            <Link 
-                                key={item._id} 
-                                to={`/watch/${item._id}`} 
+                            <Link
+                                key={item._id}
+                                to={`/watch/${item._id}`}
                                 className="profileVideoBlock"
                             >
                                 <div className="profileVideoBlockThumbnail">

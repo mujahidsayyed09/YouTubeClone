@@ -11,7 +11,7 @@ import LinearProgress from '@mui/material/LinearProgress';
 function SignUp() {
     // Profile image URL (default empty until upload)
     const [uploadedImageUrl, setUploadedImageUrl] = useState("");
-    
+
     // Form fields for signup
     const [signUpField, setSignUpField] = useState({
         channelName: "",
@@ -24,7 +24,7 @@ function SignUp() {
     // Separate progress states for better control
     const [uploading, setUploading] = useState(false);  // image upload progress
     const [submitting, setSubmitting] = useState(false); // form submission progress
-    
+
     const navigate = useNavigate();
 
     // 📌 Handles input changes and updates the corresponding field
@@ -44,10 +44,10 @@ function SignUp() {
         try {
             setUploading(true); // show progress bar
             const res = await axios.post("https://api.cloudinary.com/v1_1/dgu6xvff2/image/upload", data);
-            
+
             // Use secure_url for HTTPS
             const imageUrl = res.data.secure_url || res.data.url;
-            
+
             // Set uploaded image URL for preview
             setUploadedImageUrl(imageUrl);
 
@@ -62,27 +62,32 @@ function SignUp() {
         }
     };
 
-    // 📌 Handle signup form submission
+    // Handle signup form submission
     const handleSignUp = async () => {
         const { channelName, userName, password, about, profilePic } = signUpField;
 
-        // Simple validation to prevent empty submissions
         if (!channelName || !userName || !password || !about || !profilePic) {
             return toast.error("All fields including profile image are required");
         }
 
         try {
-            setSubmitting(true); // show progress bar
-            const res = await axios.post("http://localhost:5000/auth/signUp", signUpField);
-            
+            setSubmitting(true);
+
+            const res = await axios.post(
+                `${import.meta.env.VITE_API_BASE_URL || "https://youtubeclone-gnz1.onrender.com"}/auth/signUp`,
+                signUpField,
+                { withCredentials: true }
+            );
+
             toast.success(res.data.message);
-            navigate("/"); // redirect after signup
+            navigate("/");
         } catch (err) {
             toast.error(err.response?.data?.message || "Signup failed");
         } finally {
-            setSubmitting(false); // hide progress bar
+            setSubmitting(false);
         }
     };
+
 
     return (
         <div className="signup">
@@ -95,30 +100,30 @@ function SignUp() {
 
                 <div className="signupInputs">
                     {/* Input fields */}
-                    <input type="text" placeholder="Enter Channel Name" 
-                           value={signUpField.channelName} 
-                           onChange={(e) => handleInputField(e, "channelName")} 
-                           className="signupInputs-inputs" />
+                    <input type="text" placeholder="Enter Channel Name"
+                        value={signUpField.channelName}
+                        onChange={(e) => handleInputField(e, "channelName")}
+                        className="signupInputs-inputs" />
 
-                    <input type="text" placeholder="Enter User Name" 
-                           value={signUpField.userName} 
-                           onChange={(e) => handleInputField(e, "userName")} 
-                           className="signupInputs-inputs" />
+                    <input type="text" placeholder="Enter User Name"
+                        value={signUpField.userName}
+                        onChange={(e) => handleInputField(e, "userName")}
+                        className="signupInputs-inputs" />
 
-                    <input type="password" placeholder="Enter Password" 
-                           value={signUpField.password} 
-                           onChange={(e) => handleInputField(e, "password")} 
-                           className="signupInputs-inputs" />
+                    <input type="password" placeholder="Enter Password"
+                        value={signUpField.password}
+                        onChange={(e) => handleInputField(e, "password")}
+                        className="signupInputs-inputs" />
 
-                    <input type="text" placeholder="About Your Channel" 
-                           value={signUpField.about} 
-                           onChange={(e) => handleInputField(e, "about")} 
-                           className="signupInputs-inputs" />
+                    <input type="text" placeholder="About Your Channel"
+                        value={signUpField.about}
+                        onChange={(e) => handleInputField(e, "about")}
+                        className="signupInputs-inputs" />
 
                     {/* Image Upload */}
                     <div className="uploadImage">
                         <input type="file" accept="image/*" onChange={uploadImage} />
-                        
+
                         {/* Preview uploaded image or placeholder */}
                         <div className="uploadImageDiv">
                             <img src={uploadedImageUrl || "/unknown.jpg"} alt="Profile" />

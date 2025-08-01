@@ -13,14 +13,16 @@ function HomePage({ sideNavbar }) {
 
     // Fetch videos on mount
     useEffect(() => {
-        axios
-            .get("http://localhost:5000/api/allVideo")
-            .then(res => {
-                setData(res.data.videos);
-                setFilteredData(res.data.videos); // Initially show all
-            })
-            .catch(error => console.error("Error fetching videos:", error));
-    }, []);
+    axios
+        .get(`${import.meta.env.VITE_API_BASE_URL || "https://youtubeclone-gnz1.onrender.com"}/api/allVideo`, {
+            withCredentials: true //Important for cookies/auth
+        })
+        .then(res => {
+            setData(res.data.videos);
+            setFilteredData(res.data.videos); 
+        })
+        .catch(error => console.error("Error fetching videos:", error));
+}, []);
 
     // Categories
     const options = [

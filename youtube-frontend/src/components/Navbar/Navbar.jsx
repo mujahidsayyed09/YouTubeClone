@@ -41,11 +41,16 @@ function Navbar({ setSideNavbarFunc, sideNavbar }) {
 
   const getLogoutFun = async () => {
     try {
-      await axios.post("http://localhost:5000/auth/logout", {}, { withCredentials: true });
+      await axios.post(
+        `${import.meta.env.VITE_API_BASE_URL || "https://youtubeclone-gnz1.onrender.com"}/auth/logout`,
+        {},
+        { withCredentials: true }
+      );
     } catch (err) {
       console.log(err);
     }
   };
+
 
   useEffect(() => {
     setIsLoggedIn(localStorage.getItem("userId") !== null);

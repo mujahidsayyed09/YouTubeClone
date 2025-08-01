@@ -1,4 +1,4 @@
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import React from "react";
 import "./VideoUpload.css";
 import YouTubeIcon from '@mui/icons-material/YouTube';
@@ -6,6 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from "axios";
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
+const API_BASE = import.meta.env.VITE_API_BASE_URL || "https://youtubeclone-gnz1.onrender.com";
 
 function VideoUpload() {
     const [inputField, setInputField] = useState({ "title": "", "description": "", "videoLink": "", "thumbnail": "", "videoType": "" });
@@ -37,22 +38,24 @@ function VideoUpload() {
             console.log(err);
         }
     }
-    useEffect(()=>{
+    useEffect(() => {
         let isLoggedIn = localStorage.getItem("userId");
-        if(isLoggedIn===null){
+        if (isLoggedIn === null) {
             navigate("/");
         }
-    },[]);
+    }, []);
 
-    const handleSubmitFunc = async()=>{
+    const handleSubmitFunc = async () => {
         setLoader(true);
-        await axios.post("http://localhost:5000/api/video", inputField, {withCredentials: true}).then((res)=>{
+        try {
+            await axios.post(`${API_BASE}/api/video`, inputField, { withCredentials: true });
             setLoader(false);
             navigate("/");
-        }).catch(err=>{
+        } catch (err) {
+            setLoader(false);
             console.log(err);
-        })
-    }
+        }
+    };
     return (
         <div className="videoupload">
             <div className="uploadBox">
@@ -68,10 +71,10 @@ function VideoUpload() {
                     <div>Thumbnail <input type="file" accept="image/*" onChange={(e) => uploadImage(e, "image")} /></div>
                     <div>Video  <input type="file" accept="video/mp4, video/webm, video/*" onChange={(e) => uploadImage(e, "video")} /></div>
                     {
-                    loader && <Box sx={{ display: 'flex' }}>
-                                <CircularProgress />
-                              </Box>
-                    }              
+                        loader && <Box sx={{ display: 'flex' }}>
+                            <CircularProgress />
+                        </Box>
+                    }
                 </div>
 
                 <div className="uploadBtns">
