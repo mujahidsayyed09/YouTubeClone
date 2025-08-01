@@ -5,7 +5,7 @@ const videoController = require("../Controllers/videoController");
 
 
 router.post("/upload", auth, videoController.uploadVideo);
-router.get("/videos", videoController.getAllVideo);
+router.get("/allVideo", videoController.getAllVideo);
 router.get("/video/:id", videoController.getVideoById);
 router.get("/channel/:userId", videoController.getAllVideoByUserId);
 
