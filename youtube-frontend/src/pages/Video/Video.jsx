@@ -56,9 +56,23 @@ function Video() {
      * Post a Comment
      * ============================= */
     const handleComment = async () => {
+        const token = localStorage.getItem("token"); // Or sessionStorage/context, depending on where you store it
+        // Check if token exists
+        if (!token) {
+            toast.error("Please log in to comment");
+            return;
+        }
+
         const body = { message, video: id };
         try {
-            const res = await axios.post(`${API_BASE}/commentApi/comment`, body, { withCredentials: true });
+            const res = await axios.post(
+                `${API_BASE}/commentApi/comment`,
+                body,
+                {
+                    withCredentials: true,
+                    headers: { Authorization: `Bearer ${token}` } // Optional if backend supports Bearer token
+                }
+            );
             const newComment = res.data.comment;
             setComments([newComment, ...comments]);
             setMessage("");
@@ -66,6 +80,7 @@ function Video() {
             toast.error("Please Login");
         }
     };
+
 
     // Fetch data on component mount / ID change
     useEffect(() => {
