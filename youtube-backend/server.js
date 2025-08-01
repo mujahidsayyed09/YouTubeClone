@@ -7,7 +7,7 @@ require("dotenv").config();
 
 const allowedOrigins = [
   "http://localhost:5173", // Local frontend
-  "https://youtubeclonems.netlify.app/" // Replace with your deployed frontend URL
+  "https://youtubeclonems.netlify.app" // Replace with your deployed frontend URL
 ];
 // Middleware
 app.use(cors({
