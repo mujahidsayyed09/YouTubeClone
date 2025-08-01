@@ -5,6 +5,7 @@ Live Link---https://youtubeclonems.netlify.app/
 ---
 
 ## 🚀 **Setup Instructions**
+Link For Website Preview Video---https://www.loom.com/share/5481618731714addb3ecb08c2eba4494?sid=527fa59b-fcea-43b9-902b-8c8b0e3637bd
 
 ### **1️⃣ Clone the Repository**
 
