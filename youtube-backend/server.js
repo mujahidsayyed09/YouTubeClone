@@ -4,10 +4,23 @@ const cookieParser = require("cookie-parser");
 const cors = require("cors");
 require("dotenv").config();
 
+
+const allowedOrigins = [
+  "http://localhost:5173", // Local frontend
+  "https://youtube-clone-frontend.onrender.com" // Replace with your deployed frontend URL
+];
 // Middleware
 app.use(cors({
-    origin: process.env.CLIENT_URL || "http://localhost:5173", 
-    credentials: true
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like mobile apps, Postman)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    } else {
+      return callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true
 }));
 app.use(express.json());
 app.use(cookieParser());
