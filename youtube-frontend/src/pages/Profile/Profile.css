@@ -1,0 +1,131 @@
+.profile {
+    display: flex;
+    width: 100%;
+    padding-top: 56px; /* Below navbar */
+    box-sizing: border-box;
+    background-color: black;
+    color: white;
+    min-height: 100vh;
+}
+
+/* Page Layout */
+.profile_page {
+    flex: 1;
+    margin-left: 310px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.fullProfile_page {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-left: 25px;
+    align-items: center;
+}
+
+/* Top Section */
+.profile_top_section {
+    display: flex;
+    width: 100%;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #444;
+}
+
+.profile_top_section_profile {
+    width: 150px;
+    height: 150px;
+}
+
+.profile_top_section_profile img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.profile_top_section_About {
+    flex: 1;
+    padding-left: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.profileTopSectionAboutName {
+    font-size: 36px;
+    font-weight: 600;
+}
+
+.profileTopSectionAboutInfo {
+    font-size: 16px;
+    color: #999;
+}
+
+/* Videos Section */
+.profile_videos {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.profile_video_title {
+    font-size: 22px;
+    font-weight: 500;
+    color: #cfcfcf;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #999;
+    padding-bottom: 10px;
+}
+
+.profileMainVideo {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.profileVideoBlock {
+    width: 210px;
+    color: white;
+    text-decoration: none;
+}
+
+.profileVideoBlockThumbnail {
+    width: 100%;
+    height: 140px;
+}
+
+.profileVideoBlockThumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profileVideoBlockDetailName {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.profileVideoBlockDetailTime {
+    font-size: 13px;
+    color: #ababab;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .profile_page {
+        margin-left: 0;
+        padding: 0 10px;
+    }
+    .profile_top_section {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .profile_top_section_About {
+        padding-left: 0;
+        margin-top: 10px;
+    }
+}

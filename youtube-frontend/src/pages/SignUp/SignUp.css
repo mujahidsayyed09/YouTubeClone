@@ -1,0 +1,93 @@
+.signup {
+    margin-top: 56px;
+    color: white;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: black;
+    min-height: 100vh;
+}
+
+.signupCard {
+    width: 40%;
+    border: 1px solid white;
+    padding: 20px;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0.5px 0.5px 8px white;
+}
+
+@media (max-width: 768px) {
+    .signupCard {
+        width: 90%;
+    }
+}
+
+.signupCardTitle {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    font-size: 32px;
+    font-family: "Oswald", sans-serif;
+}
+
+.signupInputs {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.signupInputs-inputs {
+    width: 80%;
+    height: 45px;
+    color: white;
+    padding: 0 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #222;
+}
+
+.uploadImage {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.uploadImageDiv {
+    width: 100px;
+    height: 100px;
+}
+
+.uploadImageDiv img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.signupBtns {
+    display: flex;
+    gap: 20px;
+    margin-top: 15px;
+}
+
+.signupBtn {
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 5px;
+    border: 1px solid white;
+    cursor: pointer;
+    color: white;
+    background: transparent;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.signupBtn:hover {
+    background-color: white;
+    color: black;
+}

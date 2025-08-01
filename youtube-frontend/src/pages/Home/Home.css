@@ -1,0 +1,8 @@
+.home {
+    display: flex;
+    width: 100%;
+    padding-top: 56px; 
+    background-color: black;
+    min-height: 100vh;
+    box-sizing: border-box;
+}

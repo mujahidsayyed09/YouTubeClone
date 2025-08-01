@@ -1,0 +1,81 @@
+/* Hide Sidebar */
+.home-sideNavbarHide {
+    display: none;
+}
+
+/* Sidebar Container */
+.home-sideNavbar {
+    display: flex;
+    flex-direction: column;
+    width: 260px;
+    height: calc(100vh - 56px);
+    position: fixed;
+    top: 56px;
+    left: 0;
+    z-index: 1500;
+    padding: 14px;
+    background-color: black;
+    color: white;
+    overflow-y: auto;
+    border-right: 1px solid #2a2a2a;
+}
+
+/* Scrollbar */
+.home-sideNavbar::-webkit-scrollbar {
+    width: 0;
+}
+.home-sideNavbar::-webkit-scrollbar-thumb {
+    background-color: #444;
+    border-radius: 4px;
+}
+.home-sideNavbar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* Section Containers */
+.home_sideNavbarTop,
+.home_sideNavbarMiddle {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgb(86, 85, 85);
+    margin-bottom: 10px;
+}
+
+/* Option Style */
+.home_sideNavbarTopOption {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 9px 12px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.home_sideNavbarTopOption:hover {
+    background-color: rgb(35, 35, 35);
+}
+
+.home_sideNavbarTopOptionTitle {
+    font-size: 14px;
+    font-weight: 450;
+}
+
+/* Section Header */
+.home_sideNavbarTopOptionTitleHeader {
+    font-weight: 600;
+    font-size: 15px;
+    margin: 5px 12px;
+    color: #ccc;
+}
+
+/* Subscription Images */
+.home_sideNavbar_ImgLogo {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    object-fit: cover;
+}
