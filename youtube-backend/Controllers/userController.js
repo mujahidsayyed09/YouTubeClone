@@ -3,10 +3,11 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 const cookieOptions = {
-    httpOnly: true,
-    secure: false,
-    sameSite: 'Lax'
-}
+  httpOnly: true,
+  secure: process.env.NODE_ENV === "production", // HTTPS in prod
+  sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax"
+};
+
 
 exports.signUp = async(req, res)=>{
     try{
@@ -34,7 +35,7 @@ exports.signIn = async(req, res)=>{
 
         if(user && await bcrypt.compare(password, user.password)){
 
-            const token = jwt.sign({ userId: user._id}, "Secret_Key");
+            const token = jwt.sign({ userId: user._id},process.env.JWT_SECRET, { expiresIn: "7d" });
             res.cookie('token', token, cookieOptions);
 
             res.json({message: "Logged in successfully", success: "true", token, user});
