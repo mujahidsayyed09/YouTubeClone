@@ -66,8 +66,32 @@ function SignUp() {
     const handleSignUp = async () => {
         const { channelName, userName, password, about, profilePic } = signUpField;
 
+        // Basic field checks
         if (!channelName || !userName || !password || !about || !profilePic) {
             return toast.error("All fields including profile image are required");
+        }
+
+        // Channel name length
+        if (channelName.length < 3) {
+            return toast.error("Channel name must be at least 3 characters");
+        }
+
+        // Username validation
+        if (userName.length < 3) {
+            return toast.error("Username must be at least 3 characters");
+        }
+
+        // Password validation
+        if (password.length < 6) {
+            return toast.error("Password must be at least 6 characters");
+        }
+        if (!/\d/.test(password) || !/[A-Za-z]/.test(password)) {
+            return toast.error("Password must contain letters and numbers");
+        }
+
+        // About field validation
+        if (about.length < 10) {
+            return toast.error("About section must be at least 10 characters");
         }
 
         try {
@@ -87,6 +111,7 @@ function SignUp() {
             setSubmitting(false);
         }
     };
+
 
 
     return (

@@ -12,7 +12,7 @@ function Profile({ sideNavbar }) {
 
     useEffect(() => {
         axios
-            .get(`${import.meta.env.VITE_API_BASE_URL || "https://youtubeclone-gnz1.onrender.com"}/api/${id}/channel`)
+            .get(`${import.meta.env.VITE_API_BASE_URL || "https://youtubeclone-gnz1.onrender.com"}/api/channel/${id}`)
             .then((response) => {
                 setData(response.data.video);
                 setUser(response.data.video[0]?.user);

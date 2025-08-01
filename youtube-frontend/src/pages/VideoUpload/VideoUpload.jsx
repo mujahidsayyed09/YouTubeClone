@@ -48,7 +48,7 @@ function VideoUpload() {
     const handleSubmitFunc = async () => {
         setLoader(true);
         try {
-            await axios.post(`${API_BASE}/api/video`, inputField, { withCredentials: true });
+            await axios.post(`${API_BASE}/api/upload`, inputField, { withCredentials: true });
             setLoader(false);
             navigate("/");
         } catch (err) {

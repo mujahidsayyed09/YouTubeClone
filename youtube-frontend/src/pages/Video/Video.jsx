@@ -32,7 +32,7 @@ function Video() {
      * ============================= */
     const fetchVideoById = async () => {
         try {
-            const res = await axios.get(`${API_BASE}/api/getVideoById/${id}`);
+            const res = await axios.get(`${API_BASE}/api/video/${id}`);
             setData(res.data.video);
             setVideoUrl(res.data.video?.videoLink);
         } catch (error) {
